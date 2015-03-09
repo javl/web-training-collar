@@ -1,4 +1,8 @@
 #include <SoftwareSerial.h>
+
+// SoftwareSerial is used with the option inverted flag to true.
+// This way an inverted serial signal is used (active = high, idle = low), which is required
+// by the receiver of the collar I'm using. This could be different for other brands.
 SoftwareSerial mySerialOut(3, 4, true);
 bool receiving_command = false;
 
@@ -59,10 +63,14 @@ const uint8_t commands[49][22] = {
 };
 
 void setup() {
-  pinMode(13, OUTPUT);
+  // Serial is used for the connection to the server (regular non-inverted serial)
   Serial.begin(4800);
+  // mySerialOut is used to send serial data (inverted) to the collar
   mySerialOut.begin(4800);
-  
+
+  // Wait for a bit, than send two signals to the collar. If the collar has just been turned
+  // on, the first signal should pair it with the transmitter. The second will make it vibrate, just
+  // as some feedback  
   delay(1000);
   playCmd(0);
   delay(1000);
@@ -70,11 +78,15 @@ void setup() {
 }
 
 void loop() {
+  // If data has come in from the server, check what it is
   if (Serial.available() > 0) {
     processInput();
   }
 }
 
+// so the processing is a bit weird. Incoming commands are formatted like this:
+// <10>
+// Including the < and > charaters. For some reason I had some trouble reciving just the number
 void processInput () {
   static long receivedNumber = 0;
   static bool receivingTimer = false;
@@ -105,6 +117,7 @@ void processInput () {
       break;
   }
 }
+
 // Play back one of the commands. You seem to get the best results when sending the
 // command twice instead of just once
 void playCmd(int index) {

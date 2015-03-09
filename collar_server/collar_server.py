@@ -12,16 +12,19 @@ def page(cmd_id):
 		return "Ignore zero"
 	else:
 		print "Send out number %s" % str(cmd_id)
+		# Commands are formatted like this: <10>
+		# inclusing the < and > characters
 		ser.write("<%s>" % str(cmd_id))
+		# Output the command sent to the browser window
 		return "Cmd %s sent" % cmd_id
 
 def main():
 	global ser
 	try:
-		# Find Arduino on Linux
+		# Find Arduino on OSX
 		status, address = commands.getstatusoutput('ls /dev | grep tty.usbmodem')
 		if address == "":
-			# Find Arduino on Windows
+			# Find Arduino on Linux
 			status, address = commands.getstatusoutput('ls /dev | grep ttyUSB')
 			if address == "":
 		 		exit("No Arduino found...")

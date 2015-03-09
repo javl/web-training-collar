@@ -1,12 +1,13 @@
 #include <SoftwareSerial.h>
 
-// SoftwareSerial is used with the option inverted flag to true.
-// This way an inverted serial signal is used (active = high, idle = low), which is required
-// by the receiver of the collar I'm using. This could be different for other brands.
+// SoftwareSerial is used with the inverted flag set to true.
+// This way an inverted serial signal is used (idle = low, active = high), which is required
+// by the receiver of the particular collar I'm using. This could be different for other types.
 SoftwareSerial mySerialOut(3, 4, true);
+
 bool receiving_command = false;
 
-// All of the available commands
+// All of the available commands for my receiver
 const uint8_t commands[49][22] = {
   //0 beep
   {192, 232, 239, 15, 239, 239, 8, 15, 232, 232, 239, 8, 15, 15, 232, 15, 239, 8, 15, 8, 232, 255},
@@ -63,64 +64,66 @@ const uint8_t commands[49][22] = {
 };
 
 void setup() {
-  // Serial is used for the connection to the server (regular non-inverted serial)
+  // Open a serial connection to the local server (regular, non-inverted serial)
   Serial.begin(4800);
   // mySerialOut is used to send serial data (inverted) to the collar
   mySerialOut.begin(4800);
 
-  // Wait for a bit, than send two signals to the collar. If the collar has just been turned
-  // on, the first signal should pair it with the transmitter. The second will make it vibrate, just
-  // as some feedback  
-  delay(1000);
-  playCmd(0);
-  delay(1000);
-  playCmd(2);
+  // Wait for a bit, than send two signals to the collar. If the collar has been turned on, the
+  // first signal should pair it with the transmitter. The second will make it vibrate, to provide
+  // some feedback on the successful pairing  
+  delay(1000); // Wait one second
+  sendCmd(0);  // Send pairing signal (0 = beep, but any will do)
+  delay(1000); // Wait one second
+  sendCmd(2);  // Send command 2: vibrate
 }
 
+// The main loop that checks for incoming Serial data from
+// the server. If received, go over to processsInput()
 void loop() {
-  // If data has come in from the server, check what it is
   if (Serial.available() > 0) {
     processInput();
   }
 }
 
-// so the processing is a bit weird. Incoming commands are formatted like this:
-// <10>
-// Including the < and > charaters. For some reason I had some trouble reciving just the number
+// The incoming signal is a bit weird. I had some trouble sending/receiving just numbers so
+// they are wrapped in a longer string like so: <10> (including the < and > characters).
 void processInput () {
+  // Holds the number that came in
   static long receivedNumber = 0;
-  static bool receivingTimer = false;
 
+  // Get the first available byte
   const byte c = Serial.read ();
-  Serial.println("Incoming");
-  Serial.println(c);
   switch (c) {
-    case '0' ... '9':
+    // A new command is coming in, reset the receivedNumber
+    case '<':
+      receiving_command = true;
+      receivedNumber = 0;
+      break;
+    // Numbers, part of the command.
+    case '0' ... '9': 
       if (receiving_command) {
         receivedNumber *= 10;
         receivedNumber += c - '0';
       }
       break;
+    // The closing delimiter, so the currently saved receivedNumber is the
+    // entire command 
     case '>':
-      receiving_command = false;
+      receiving_command = false; // No longer waiting for more digits for this command
+      // Remove 1 to translate the incoming command number to an array index.
       receivedNumber -= 1;
-      if(receivedNumber >= 0){
-        Serial.print("play number: ");
-        Serial.println(receivedNumber);
-        playCmd(receivedNumber);
+      if(receivedNumber >= 0){ // If all went OK, nothing below 0 should be coming in
+	// Send all the bytes of the command
+        sendCmd(receivedNumber);
       }
-      break;
-    case '<':
-      //      Serial.println("start command");
-      receiving_command = true;
-      receivedNumber = 0;
       break;
   }
 }
 
-// Play back one of the commands. You seem to get the best results when sending the
+// Send one of the commands. You seem to get the best results when sending the
 // command twice instead of just once
-void playCmd(int index) {
+void sendCmd(int index) {
   // Disable interrupt (otherwise the serial data will be send out in packets, which is too slow
   uint8_t oldSREG = SREG;
   cli();

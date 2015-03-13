@@ -1,17 +1,42 @@
 # Collar
 
+## Summary
+Collar is a simple setup to train computer users to only visit websites
+that offer a safe connection between the server and your computer.
+
+## Background
+Collar was made for medialab Setup's "Controlegroep" (control-group) 
+project. The 25 participants of the Controlegroup (including myself)
+have set up different experiments to see if and how their behaviour
+can be monitored and/or altered with the help of apps and gadgets.
+
+A lot of websites are still offering only unencrypted (HTTP) versions
+of their websites. The connections between those websites and their
+visitors are easy to spy on. Collar was made to help solve this
+problem with a simple idea: if the owners of the website don't try
+to protect their visitors, the visitors should help themselves and
+learn to avoid these websites altogether.
+Collar consist of a regular dog collar used for training. Using a 
+simple remote control you can administer a small electrostatic shock 
+to your canine. For this project I created a second remote control
+which can be controlled from a computer, and a Firefox browser plugin
+to keep track of websites visited. When a visit to an unprotected
+website is detected, the user will get shocked, teaching him or her
+not to visit this website again.
+
+## Installation
+
 1: Install the Firefox extension: in Firefox use 'file > open' 
 and select the collar.xpi file found in collar/browser_plugin/firefox/
 Restart Firefox when the installation is done.
 
 2: Plug the transmitter into a USB port
 
-3: Start the Flask Python server. Open a terminal window (OSX users;
-use Spotlight to open the Terminal application) and navigate to the
-collar folder. If you've put it in your downloads folder, this would
-be something like:
-    cd ~/Downloads/collar/collar_server
-And start the server with:
+3: Start the Flask Python server. Open a terminal window (OSX users:
+use Spotlight to open the Terminal app collar folder. If you've put
+it in your downloads folder, this would be something like:
+    cd Downloads/collar/collar_server
+Start the server with:
     python collar.py
 
 4: Put the two AAA batteries into the collar module. You might

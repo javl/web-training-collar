@@ -12,6 +12,7 @@ ser = None
 # Catch calls to 0.0.0.0:8080/cmd/<number>
 @app.route('/cmd/<cmd_id>/')
 def page(cmd_id):
+	global ser
 	# Had some trouble with weird zeros coming in, so ignore those
 	# commands start at 1
 	if cmd_id == "0":
@@ -26,7 +27,7 @@ def page(cmd_id):
 
 # The main function of the script
 def main():
-	#global ser
+	global ser
 	try:
 		# Find Arduino on OSX
 		status, address = commands.getstatusoutput('ls /dev | grep tty.usbmodem')
@@ -37,7 +38,7 @@ def main():
 		 		exit("No Arduino found...")
 		# Open a serial connection to the Arduino with a baudrate of 4800
 		ser = serial.Serial("/dev/"+address, 4800)
-
+		print ser
 		# Start the local server
 		app.run(host='0.0.0.0', port=8080, use_reloader=False)
 	

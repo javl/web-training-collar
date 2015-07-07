@@ -2,9 +2,10 @@
 
 For English, see README.md
 
+Zie [jaspervanloenen.com](http://www.jaspervanloenen.com) voor meer info.
+
 ## Introductie
 
-Zie [jaspervanloenen.com](http://www.jaspervanloenen.com) voor meer info.
 
 Veel websites bieden hun gebruikers nog steeds alleen een onbeveiligde (HTTP) verbinding, wat betekent dat de communicatie tussen de computer van de gebruiker en de server van de website gemakkelijk af te luisteren is door derden. Kwaadwillenden kunnen met gemak de inhoud van websites zien: tekst, afbeeldingen, aangeklikte links, etc. Vooral op openbare WIFI netwerken (zoals 'Wifi in de trein') is er een reële kans dat er iemand met je meekijkt.
 
@@ -23,6 +24,7 @@ De Web trainings halsband is gemaakt om dit probleem op te lossen in vier simpel
 De Web trainings halsband werkt volgens een simpel principe: als website eigenaren geen beveiligde (HTTPS) verbinding aanbieden, dan moet de gebruiker zich- of haarzelf aanleren deze website te vermijden. Dit gedrag kan men zich makkelijk aanleren via conditionering, het gebied waar de Web gebruiker trainings halsband in uitblinkt.
 
 Elke keer dat je een website bezoekt via een onveilige verbinding krijg je een waarschuwing. De halsband zal trillen en er klinkt een pieptoon (optioneel: het geluid kan worden uitgeschakeld voor discreet gebruik in de openbare ruimte). De volgende keer dat de gebruiker weer op de website komt krijgt deze een elektrostatische schok. De intensiteit van deze schok wordt hoger bij elk volgend bezoek aan de website.
+
 Optioneel is er ook een meer vriendelijke modus aanwezig. In de vriendelijke modus zal de kracht van de schok niet hoger worden, maar de trilfunctie als waarschuwing bij een eerste bezoek zal ook vervangen worden door een schok.
 
 ## Project achtergrond

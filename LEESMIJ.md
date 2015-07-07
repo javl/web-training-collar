@@ -4,7 +4,7 @@ For English, see README.md
 
 ## Introductie
 
-Veel websites bieden hun gebruikers nog steeds alleen een onbeveiligde (HTTP) verbinding, wat betekend dat de communicatie tussen de computer van de gebruiker en de server van de website gemakkelijk af te luisteren is door derden. Kwaadwillenden kunnen met gemak de inhoud van websites zien: tekst, afbeeldingen, aangeklikte links, etc. Vooral op openbare WIFI netwerken is er een reële kans dat er iemand met je meekijkt.
+Veel websites bieden hun gebruikers nog steeds alleen een onbeveiligde (HTTP) verbinding, wat betekent dat de communicatie tussen de computer van de gebruiker en de server van de website gemakkelijk af te luisteren is door derden. Kwaadwillenden kunnen met gemak de inhoud van websites zien: tekst, afbeeldingen, aangeklikte links, etc. Vooral op openbare WIFI netwerken is er een reële kans dat er iemand met je meekijkt.
 
 De Web trainings halsband is gemaakt om dit probleem op te lossen in vier simpele stappen:
 

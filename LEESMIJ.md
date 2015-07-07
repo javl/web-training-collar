@@ -29,7 +29,7 @@ Optioneel is er ook een meer vriendelijke modus aanwezig. In de vriendelijke mod
 
 ## Project achtergrond
 
-De Web trainings halsband is gemaakt voor medialab [Setup](http://www.setup.nl)'s "Controlegroep" project. De 25 deelnemers van de Controlegroep hebben allemaal een experiment opgezet om te onderzoeken in hoeverre ons gedrag gemonitord en bijgestuurd kan worden met behulp van apps en gadgets.
+De Web trainings halsband is gemaakt voor medialab [Setup](http://www.setup.nl)'s "Controlegroep" project. De 25 deelnemers van de [Controlegroep](http://www.controlegroep.nl) hebben allemaal een experiment opgezet om te onderzoeken in hoeverre ons gedrag gemonitord en bijgestuurd kan worden met behulp van apps en gadgets.
 
 ## Technische informatie
 

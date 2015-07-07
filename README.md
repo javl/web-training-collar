@@ -2,9 +2,10 @@
 
 Voor Nederlands, zie LEESMIJ.md
 
+See [jaspervanloenen.com](http://www.jaspervanloenen.com) for more info.
+
 ## Introduction
 
-See [jaspervanloenen.com](http://www.jaspervanloenen.com) for more info on the author.
 
 A lot of websites still only offer an unencrypted (HTTP) connection to their visitors. The communication between the computer of the visitor and the server hosting the website is open and can easily be intercepted by others. Possible attackers can see anything the user is seeing: text, images, links clicked, etc. Especially on open or public WIFI networks there is always the change of someone looking at your internet usage.
 
@@ -17,6 +18,7 @@ The Web Training Collar was made to solve this problem in a four easy steps:
 
 ## How It Works
 The Web Training Collar follows one simple principle: if website owners don't offer an encrypted (HTTPS) connection to their websites, visitors should refrain from visiting those websites. This behavior can easily be achieved by means of conditioning. This is where the Web Training collar shines: every time you visit a website over an unencrypted connection, you will get a warning. The Web Training Collar will vibrate and you will hear a beep (optional: the sound can be disabled for more discrete use in public places). The next time you visit the website, the Web Training Collar will administer an electrostatic shock. The intensity of this shock will increase with every consecutive visit of the website.
+
 Optionally you can enable a more friendly mode where the power of the shock will not increase, but in this mode the warning vibration on a first visit will also be replaced by a shock.
 
 ## Project Background

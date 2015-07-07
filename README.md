@@ -4,6 +4,8 @@ Voor Nederlands, zie LEESMIJ.md
 
 ## Introduction
 
+See [jaspervanloenen.com](http://www.jaspervanloenen.com) for more info on the author.
+
 A lot of websites still only offer an unencrypted (HTTP) connection to their visitors. The communication between the computer of the visitor and the server hosting the website is open and can easily be intercepted by others. Possible attackers can see anything the user is seeing: text, images, links clicked, etc. Especially on open or public WIFI networks there is always the change of someone looking at your internet usage.
 
 The Web Training Collar was made to solve this problem in a four easy steps:

@@ -1,0 +1,3 @@
+content	web_user_training_collar	chrome/content/	contentaccessible=yes
+
+overlay	chrome://browser/content/browser.xul	chrome://web_user_training_collar/content/main.xul

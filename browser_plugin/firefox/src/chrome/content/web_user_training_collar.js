@@ -1,7 +1,7 @@
 (function() {
 
-	// Function to make string into a hash so the actual URL doesn't need to be sent. 
-	// Not perfect; hostnames can result in have the same number, but not very likely 
+	// Function to make string into a hash so the actual URL doesn't need to be sent.
+	// Not perfect; hostnames can result in have the same number, but not very likely
 	// to happen (often). Got it from stackoverflow.com/questions/7616461
 	String.prototype.hashCode = function() {
 		var hash = 0, i, chr, len;
@@ -23,12 +23,12 @@
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState == XMLHttpRequest.DONE ) { // XMLHttpRequest.DONE == 4
 				if(xmlhttp.status != 200){ // If response is NOT ok, show error in console
-					console.log("Web User Training Collar xmlhttp.status error: " + xmlhttp.status);
+					console.log("Web Training Collar xmlhttp.status error: " + xmlhttp.status);
 				}
 			}
 		}
 		// Send hashed version of hostname to local server.
-		xmlhttp.open("GET", "http://localhost:3001/hostname/"+hostname.hashCode()+"/", true);
+		xmlhttp.open("GET", "http://127.0.0.1:3001/hostname/"+hostname.hashCode()+"/", true);
 		xmlhttp.send(); // Send the request
 	}
 

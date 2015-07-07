@@ -1,4 +1,4 @@
-// The Arduino code for the Web User Training Collar
+// The Arduino code for the Web Training Collar
 // http://github.com/javl/webUserTrainingCollar
 
 #include <SoftwareSerial.h>
@@ -81,10 +81,9 @@ void setup() {
 void loop() {
 	if (Serial.available() > 0) { // If serial available
 		int val = Serial.read();
-		val = val - '0'; // Convert char to int
 		if(val >= 0 && val < 49){
 			sendCmd(val);
-		} 
+		}
 	}
 }
 
@@ -107,7 +106,7 @@ void sendCmd(int index) {
 	}
 	delay(200);
 	SREG = oldSREG; // turn interrupts back on
-	// Turn the LED on for half a second to provide some visual feedback	
+	// Turn the LED on for half a second to provide some visual feedback
 	digitalWrite(13, HIGH);
 	delay(500);
 	digitalWrite(13, LOW);

@@ -2,8 +2,8 @@
 
 <?xml-stylesheet type="text/css" href="chrome://global/skin/" ?>
 
-<!DOCTYPE overlay SYSTEM "chrome://web_user_training_collar/locale/cv-pls.dtd">
+<!DOCTYPE overlay SYSTEM "chrome://web_training_collar/locale/cv-pls.dtd">
 
 <overlay id="cv-pls-browser-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-  <script type="text/javascript" src="chrome://web_user_training_collar/content/web_user_training_collar.js" />
+  <script type="text/javascript" src="chrome://web_training_collar/content/web_training_collar.js" />
 </overlay>

@@ -7,10 +7,10 @@
     <em:type>2</em:type>
 
     <!-- Extension details -->
-    <em:name>Web User Training Collar</em:name>
+    <em:name>Web Training Collar</em:name>
     <em:description>Condition yourself to only visit websites over an encrypted connection.</em:description>
     <em:creator>Jasper van Loenen</em:creator>
-    <em:homepageURL>http://jaspervanloenen.com/web-user-training-collar/</em:homepageURL>
+    <em:homepageURL>http://jaspervanloenen.com/web-training-collar/</em:homepageURL>
 
     <!-- Current version -->
     <em:version>1.0</em:version>

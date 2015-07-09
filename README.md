@@ -22,7 +22,7 @@ The Web Training Collar follows one simple principle: if website owners don't of
 Optionally you can enable a more friendly mode where the power of the shock will not increase, but in this mode the warning vibration on a first visit will also be replaced by a shock.
 
 ## Project Background
-The Web Training Collar was built for medialab [Setup](http://www.setup.nl)'s "Controlegroep" (control group) project. The 25 participants of the [Controlegroep](http://www.controlegroep.nl/) have set up experiments to see if and how their behavior can be monitored or altered with the help of apps and gadgets.
+The Web Training Collar was built during medialab [Setup](http://www.setup.nl)'s "Controlegroep" (control group) project. The 25 participants of the [Controlegroep](http://www.controlegroep.nl/) have set up experiments to see if and how their behavior can be monitored or altered with the help of apps and gadgets.
 
 ## Technical Information
 Every time you visit a website the browser extension checks the protocol used. If the protocol is not HTTPS or ABOUT (used by somebrowsers), it sends a hashed version of the website's hostname to a local Flask server running in Python.

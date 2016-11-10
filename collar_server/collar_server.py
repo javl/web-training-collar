@@ -68,8 +68,6 @@ def simpleShock():
 			print "The /shock endpoint only offers a friendly shock"
 
 	if ARGS.use_arduino:
-		if ARGS.silent == False:
-			ser.write(struct.pack('B',0)) # Send beep (unless in silent mode)
 		ser.write(struct.pack('B', 8)) # Shock 2
 	return 'success'
 

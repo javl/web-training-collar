@@ -56,20 +56,33 @@ def init_db():
       "visits" INT)')
 
 #===========================================================
-# Catch requests to 127.0.0.1:3001/<hashedhostname>/
+# Catch requests to 127.0.0.1:3001/shock
 #===========================================================
-@app.route('/<int:hashed_hostname>/')
-def page(hashed_hostname):
+@app.route('/shock')
+def simpleShock():
+	if ARGS.verbose > 1: print "Incoming shock"
 	global ser
 
-	if ARGS.friendly:
-		ser.write(struct.pack('B', 8)) # Shock 2
-		return 'success'
+	if not ARGS.friendly:
+		if ARGS.verbose > 0:
+			print "The /shock endpoint only offers a friendly shock"
 
+	if ARGS.use_arduino:
+		if ARGS.silent == False:
+			ser.write(struct.pack('B',0)) # Send beep (unless in silent mode)
+		ser.write(struct.pack('B', 8)) # Shock 2
+	return 'success'
+
+#===========================================================
+# Catch requests to 127.0.0.1:3001/host/<hashedhostname>/
+#===========================================================
+@app.route('/host/<int:hashed_hostname>/')
+def extendedShock(hashed_hostname):
+	global ser
 	hashed_hostname = str(hashed_hostname)
 	if ARGS.verbose > 0: print "Incoming hashed hostname: %s" % hashed_hostname
 
-	# Open the database conneciton and see if the hashed_hostname is already in there
+	# Open the database connection and see if the hashed_hostname is already in there
 	# If not, vibrate as a first-visit warning and add it to the database
 	# If already there, check the number of previous visits and shock the user accordingly
 	con = lite.connect('sites.db')
@@ -93,18 +106,21 @@ def page(hashed_hostname):
 			current_time = int(time.time())
 			if current_time - last_shock > 10:
 				last_shock = current_time
-				visits_before = result[2]
-				if ARGS.use_arduino:
-					if visits_before == 1:
-						ser.write(struct.pack('B', 7)) # Shock 1
-					elif visits_before == 2:
-						ser.write(struct.pack('B', 11)) # Shock 5
-					elif visits_before == 3:
-						ser.write(struct.pack('B', 16)) # Shock 10
-					elif visits_before == 4:
-						ser.write(struct.pack('B', 20)) # Shock 50
-					elif visits_before >= 5:
-						ser.write(struct.pack('B', 25)) # Shock 100
+				if ARGS.friendly:
+					ser.write(struct.pack('B', 8)) # Shock 2
+				else:
+					visits_before = result[2]
+					if ARGS.use_arduino:
+						if visits_before == 1:
+							ser.write(struct.pack('B', 7)) # Shock 1
+						elif visits_before == 2:
+							ser.write(struct.pack('B', 11)) # Shock 5
+						elif visits_before == 3:
+							ser.write(struct.pack('B', 16)) # Shock 10
+						elif visits_before == 4:
+							ser.write(struct.pack('B', 20)) # Shock 50
+						elif visits_before >= 5:
+							ser.write(struct.pack('B', 25)) # Shock 100
 
 				cur.execute("UPDATE entries SET visits=visits+1 WHERE hashed_hostname=?", (hashed_hostname,))
 				con.commit()
@@ -123,19 +139,19 @@ def main():
 	try:
 		# Try some different Arduino paths
 		if ARGS.use_arduino:
-			# Find Arduino on Linux
+			# Find Arduino on Linux, name type 1
 			status, address = commands.getstatusoutput('ls /dev | grep ttyUSB')
 			if address == "":
-				# Find Arduino on Linux
+				# Find Arduino on Linux, name type 2
 				status, address = commands.getstatusoutput('ls /dev | grep ttyACM0')
 				if address == "":
-					# Find Arduino on OSX, name style 1
+					# Find Arduino on OSX, name type 1
 					status, address = commands.getstatusoutput('ls /dev | grep tty.usbserial-')
 					if address == "":
-						# Find Arduino on OSX, name style 2
+						# Find Arduino on OSX, name type 2
 						status, address = commands.getstatusoutput('ls /dev | grep tty.usbmodem')
 						if address == "":
-							exit("No Arduino found...")
+							exit("No Arduino found. Use the -n parameter to run without, or -h for help");
 
 			# Open a serial connection to the Arduino with a baudrate of 4800
 			if ARGS.verbose > 0: print "Arduino found at %s" % address

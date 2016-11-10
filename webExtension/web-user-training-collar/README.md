@@ -1,0 +1,2 @@
+For expositions, I mainly use the Firefox plugin, but I was having trouble getting it to work lately. This is a quick
+new version to work with the new webExtension format (it is basically the same code, wrapped with the new manifest).
